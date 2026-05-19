@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ec_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: data_engineer
+      POSTGRES_PASSWORD: de_password123
+      POSTGRES_DB: ecommerce_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ec_network
+
+networks:
+  ec_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local

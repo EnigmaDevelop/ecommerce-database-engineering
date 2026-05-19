@@ -1,0 +1,45 @@
+// =========================================================================
+// PHASE 1: HYBRID E-COMMERCE DATABASE SCHEMA (DBML)
+// =========================================================================
+
+Table users {
+  user_id integer [primary key, increment]
+  email varchar(150) [unique, not null]
+  password_hash varchar(255) [not null]
+  first_name varchar(50) [not null]
+  last_name varchar(50) [not null]
+  created_at timestamp [default: `now()`]
+}
+
+Table products {
+  product_id integer [primary key, increment]
+  sku varchar(100) [unique, not null]
+  name varchar(255) [not null]
+  base_price decimal(10,2) [not null]
+  stock_quantity integer [default: 0, not null]
+  created_at timestamp [default: `now()`]
+  attributes jsonb [note: 'Schema-on-Read: Dynamic specs like Color, RAM, Size']
+}
+
+Table orders {
+  order_id integer [primary key, increment]
+  user_id integer [not null]
+  total_amount decimal(10,2) [not null]
+  order_status varchar(30) [default: 'Pending', not null]
+  created_at timestamp [default: `now()`]
+  payment_details jsonb [note: 'Schema-on-Read: API responses from gateways']
+  shipping_tracking_history jsonb [note: 'Schema-on-Read: Array of logistics logs']
+}
+
+Table order_items {
+  order_item_id integer [primary key, increment]
+  order_id integer [not null]
+  product_id integer [not null]
+  quantity integer [not null]
+  purchased_price decimal(10,2) [not null, note: 'Financial Snapshot']
+}
+
+// Relational Constraints (Schema-on-Write)
+Ref: orders.user_id > users.user_id [delete: restrict]
+Ref: order_items.order_id > orders.order_id [delete: cascade]
+Ref: order_items.product_id > products.product_id [delete: restrict]
