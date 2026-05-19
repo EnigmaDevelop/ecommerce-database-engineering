@@ -13,7 +13,7 @@ This tier establishes a **Relational-Document Hybrid Layout** inside a single **
 
 ## 📁 File Manifest
 
-*   `ddl_schema.sql`: The hardened production DDL migration script containing full relational data types, primary/foreign key hierarchies, and cascading deletion structures.
+*   `schema.sql`: The hardened production DDL migration script containing full relational data types, primary/foreign key hierarchies, and cascading deletion structures.
 
 ---
 
@@ -30,7 +30,7 @@ CREATE DATABASE ecommerce_db;
 ```
 
 ### Step 2: Execute Schema Migration
-Run the contents of `ddl_schema.sql` against the active `ecommerce_db` context to establish the tables.
+Run the contents of `schema.sql` against the active `ecommerce_db` context to establish the tables.
 
 ---
 
