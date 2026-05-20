@@ -119,21 +119,23 @@ def generate_combined_markdown_table(before_data, after_data, output_filename):
     print(f"\n🚀 Ultimate performance report compiled successfully at: {output_filename}")
 
 if __name__ == "__main__":
-    optimized_results = run_benchmark("After Fine-Tuning")
+    import sys
     
-    baseline_results = [
-        {
-            "Query": "Q1_JSONB_Key_Search", "Status": "Before Optimization", "Execution Time (ms)": 27.914,
-            "Primary Scan Strategy": "Seq Scan", "Join Strategy": "N/A", "Sort Mechanism": "N/A", "Cache Buffers (Hit/Read)": "Fetch from Disk"
-        },
-        {
-            "Query": "Q2_Heavy_Join_Wildcard", "Status": "Before Optimization", "Execution Time (ms)": 190.217,
-            "Primary Scan Strategy": "Seq Scan", "Join Strategy": "Hash Join", "Sort Mechanism": "N/A", "Cache Buffers (Hit/Read)": "Heavy Disk Read"
-        },
-        {
-            "Query": "Q3_JSONB_Array_Containment", "Status": "Before Optimization", "Execution Time (ms)": 34.754,
-            "Primary Scan Strategy": "Seq Scan", "Join Strategy": "N/A", "Sort Mechanism": "quicksort", "Cache Buffers (Hit/Read)": "Memory/Disk Sort"
-        }
-    ]
+    # 1. Capture execution arguments dynamically from terminal inputs
+    # Expected options: "Before Optimization", "First Index Attempt", "Trigram Transformation", "Covered Final Fine-Tuning"
+    execution_status = sys.argv[1] if len(sys.argv) > 1 else "Before Optimization"
     
-    generate_combined_markdown_table(baseline_results, optimized_results, "subcontext-b-optimization/performance_report.md")
+    # 2. Run the dynamic real-time database benchmark loop against the live cluster
+    live_results = run_benchmark(execution_status)
+    
+    # 3. Dynamic token mapping to create isolated checkpoint files on disk
+    # This prevents newer experiments from overwriting previous telemetries
+    sanitized_label = execution_status.lower().replace(" ", "_").replace("-", "_")
+    report_filename = f"performance_report_{sanitized_label}.json"
+    
+    # 4. Serialize raw telemetry vectors safely onto its specific target file
+    with open(report_filename, 'w', encoding='utf-8') as f:
+        json.dump(live_results, f, indent=4)
+        
+    print(f"\n✅ Live benchmark telemetry securely locked into: {report_filename}")
+    print(f"State Recorded: [{execution_status}]")
