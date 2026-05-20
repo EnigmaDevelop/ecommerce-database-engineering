@@ -1,0 +1,29 @@
+[
+    {
+        "Query": "Q1_JSONB_Key_Search",
+        "Status": "Before Optimization",
+        "Execution Time (ms)": 10.14,
+        "Primary Scan Strategy": "Seq Scan",
+        "Join Strategy": "N/A",
+        "Sort Mechanism": "N/A",
+        "Cache Buffers (Hit/Read)": "1672 / 0"
+    },
+    {
+        "Query": "Q2_Heavy_Join_Wildcard",
+        "Status": "Before Optimization",
+        "Execution Time (ms)": 266.772,
+        "Primary Scan Strategy": "Seq Scan",
+        "Join Strategy": "Hash Join",
+        "Sort Mechanism": "N/A",
+        "Cache Buffers (Hit/Read)": "16574 / 73858"
+    },
+    {
+        "Query": "Q3_JSONB_Array_Containment",
+        "Status": "Before Optimization",
+        "Execution Time (ms)": 12.404,
+        "Primary Scan Strategy": "Seq Scan",
+        "Join Strategy": "N/A",
+        "Sort Mechanism": "top-N heapsort",
+        "Cache Buffers (Hit/Read)": "5022 / 0"
+    }
+]
