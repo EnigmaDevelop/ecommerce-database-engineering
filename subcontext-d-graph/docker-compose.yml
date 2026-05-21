@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  lh_neo4j:
+    image: neo4j:5.26.0-community
+    container_name: lh_neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    shm_size: '2gb'
+    networks:
+      analytical_lakehouse_net:
+        aliases:
+          - neo4jhost # Undertire-free alias architecture
+    volumes:
+      - neo4j_isolated_data:/data
+      - neo4j_isolated_logs:/logs
+    environment:
+      - NEO4J_AUTH=neo4j/graph_password123
+      - NEO4J_PLUGINS=["apoc"]
+
+networks:
+  analytical_lakehouse_net:
+    name: subcontext-c-lakehouse_lh_network
+    external: true
+
+volumes:
+  neo4j_isolated_data:
+  neo4j_isolated_logs:
