@@ -130,7 +130,7 @@ To complete the end-to-end system loop, locate **`graph_sync_lab.ipynb`** inside
 
 This data engineering workspace maps directly to our step-by-step architectural technical series on Medium. Review the articles for comprehensive runtime telemetry analyses, internal memory breakdowns, and structural deep dives:
 
-* **Part 1:** [Relational-Document Hybrid Modeling inside PostgreSQL 16](YOUR_MEDIUM_LINK_1)
-* **Part 2:** [Beyond the Basics: GIN Indexes, In-Memory Telemetry, and the Query Planner Paradox](YOUR_MEDIUM_LINK_2)
-* **Part 3:** [Shifting Scales: Implementing Multi-Tiered Real-Time Delta Lakehouse Patterns in a Local Sandbox](YOUR_MEDIUM_LINK_3)
-* **Part 4:** [Beyond Rows and Cubes: Graph Topologies, Distributed Lockings, and Identity Collusions via Neo4j and PySpark](YOUR_MEDIUM_LINK_4)
+* **Part 1:** [Relational-Document Hybrid Modeling inside PostgreSQL 16](https://medium.com/@enigmaticsolver/postgresql-16-hybrid-modeling-644c880eedcf)
+* **Part 2:** [Beyond the Basics: GIN Indexes, In-Memory Telemetry, and the Query Planner Paradox](https://medium.com/@enigmaticsolver/beyond-the-basics-jsonb-profiling-gin-indexes-and-the-query-planner-paradox-in-postgresql-3f0247004048)
+* **Part 3:** [Shifting Scales: Implementing Multi-Tiered Real-Time Delta Lakehouse Patterns in a Local Sandbox](https://medium.com/@enigmaticsolver/building-a-multi-tiered-real-time-delta-lakehouse-pipeline-f55667094e45)
+* **Part 4:** [Beyond Rows and Cubes: Graph Topologies, Distributed Lockings, and Identity Collusions via Neo4j and PySpark](https://medium.com/@enigmaticsolver/multi-model-data-federation-loading-relational-tables-and-delta-lake-streams-into-neo4j-via-9e2cb47935fd)
